@@ -3,13 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Webpatser\Uuid\Uuid;
 
 class Club extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, SoftDeletes, Notifiable, HasApiTokens;
+
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +35,15 @@ class Club extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = Uuid::generate()->string;
+        });
+    }
 
     /**
      * Change Laravel Passport authentication method.
