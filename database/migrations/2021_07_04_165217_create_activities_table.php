@@ -16,6 +16,7 @@ class CreateActivitiesTable extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->string('student_id');
+            $table->string('club_id');
             $table->float('body_temp');
             $table->string('physical_condition');
             $table->string('stifling');

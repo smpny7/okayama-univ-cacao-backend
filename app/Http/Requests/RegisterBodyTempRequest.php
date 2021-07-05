@@ -26,6 +26,7 @@ class RegisterBodyTempRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'student_id' => 'required|string|max:64',
             'club_id' => 'required|string|max:64',
             'body_temp' => 'required|string|max:64',
         ];
