@@ -21,6 +21,7 @@ Route::middleware('auth:api')->group(function () {
         return $request->user();
     });
 
-    Route::post('/registerBodyTemp', [StudentController::class, 'registerBodyTemp']);
+    Route::post('/status', [StudentController::class, 'status']);
+    Route::post('/enter', [StudentController::class, 'enter']);
     Route::post('/leave', [StudentController::class, 'leave']);
 });

@@ -20,7 +20,23 @@ class StudentController extends Controller
      * @param RegisterBodyTempRequest $request
      * @return JsonResponse
      */
-    public function registerBodyTemp(RegisterBodyTempRequest $request): JsonResponse
+    public function status(Request $request): JsonResponse
+    {
+        $student = new Student;
+        $student_id = $request->input('student_id');
+
+        $active_club = $student->getActiveClub($student_id);
+        return response()->json(['success' => true, 'activeClub' => $active_club]);
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param RegisterBodyTempRequest $request
+     * @return JsonResponse
+     */
+    public function enter(RegisterBodyTempRequest $request): JsonResponse
     {
         $student = new Student;
         $student_id = $request->input('student_id');
@@ -96,8 +112,8 @@ class StudentController extends Controller
         Activity::query()->orderByDesc('id')
             ->where('student_id', $student_id)->where('club_id', $club_id)->first()
             ->update([
-            'out_time' => new DateTime(),
-        ]);
+                'out_time' => new DateTime(),
+            ]);
 
         Visitor::query()->where('student_id', $student_id)->delete();
     }

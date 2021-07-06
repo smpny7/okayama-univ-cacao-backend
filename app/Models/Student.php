@@ -15,4 +15,10 @@ class Student extends Model
         $student = Visitor::query()->where('student_id', $student_id)->orderByDesc('id')->first();
         return is_null($student) ? null : $student->club_id;
     }
+
+    public function getActiveClub($student_id)
+    {
+        $student = Visitor::query()->where('student_id', $student_id)->orderByDesc('id')->first();
+        return is_null($student) ? null : $student->club_id;
+    }
 }
