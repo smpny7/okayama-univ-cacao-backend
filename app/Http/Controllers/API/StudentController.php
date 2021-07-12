@@ -5,13 +5,11 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterBodyTempRequest;
 use App\Models\Activity;
-use App\Models\Club;
 use App\Models\Student;
 use App\Models\Visitor;
 use DateTime;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class StudentController extends Controller
 {

@@ -23,6 +23,7 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::get('/getClubName', [ClubController::class, 'getClubName']);
+    Route::post('/getClubNameFromID', [ClubController::class, 'getClubNameFromID']);
 
     Route::post('/status', [StudentController::class, 'status']);
     Route::post('/enter', [StudentController::class, 'enter']);
