@@ -26,7 +26,8 @@ class StudentController extends Controller
         $student_id = $request->input('student_id');
 
         $active_club = $student->getActiveClub($student_id);
-        return response()->json(['success' => true, 'activeClub' => $active_club]);
+        $is_my_room = $active_club == $request->user()->id;
+        return response()->json(['success' => true, 'data' => ['active_club' => $active_club, 'is_my_room' => $is_my_room]]);
     }
 
 
@@ -40,10 +41,8 @@ class StudentController extends Controller
     {
         $student = new Student;
         $student_id = $request->input('student_id');
-        $club_id = $request->input('club_id');
+        $club_id = $request->user()->id;
 
-        if (Club::query()->where('id', $club_id)->doesntExist())
-            return $this->_errorResponse('Club is invalid.');
         if (!is_null($student->getActiveClubId($student_id)))
             return $this->_errorResponse('Bad request.');
         // TODO: 体温 float確認
@@ -60,14 +59,12 @@ class StudentController extends Controller
      * @param RegisterBodyTempRequest $request
      * @return JsonResponse
      */
-    public function leave(Request $request): JsonResponse
+    public function leave(Request $request): JsonResponse //TODO: Request Model
     {
         $student = new Student;
         $student_id = $request->input('student_id');
-        $club_id = $request->input('club_id');
+        $club_id = $request->user()->id;
 
-        if (Club::query()->where('id', $club_id)->doesntExist()) // TODO: isValidClub (Club Model)
-            return $this->_errorResponse('Club is invalid.');
         if (is_null($student->getActiveClubId($student_id))) // TODO: isInRoom (Student Model)
             return $this->_errorResponse('Bad request.');
 

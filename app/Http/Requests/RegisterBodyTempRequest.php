@@ -27,7 +27,6 @@ class RegisterBodyTempRequest extends FormRequest
     {
         return [
             'student_id' => 'required|string|max:64',
-            'club_id' => 'required|string|max:64',
             'body_temp' => 'required|string|max:64',
         ];
     }

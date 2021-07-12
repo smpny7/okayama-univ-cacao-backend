@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ClubController;
 use App\Http\Controllers\API\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::get('/getClubName', [ClubController::class, 'getClubName']);
 
     Route::post('/status', [StudentController::class, 'status']);
     Route::post('/enter', [StudentController::class, 'enter']);
