@@ -11,6 +11,7 @@ use App\Models\Visitor;
 use DateTime;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class StudentController extends Controller
 {
@@ -106,11 +107,12 @@ class StudentController extends Controller
      */
     private function _leaveRoom($student_id, $club_id): void
     {
-        Activity::query()->orderByDesc('id')
-            ->where('student_id', $student_id)->where('club_id', $club_id)->first()
-            ->update([
-                'out_time' => new DateTime(),
-            ]);
+        $activity = Activity::query()->orderByDesc('id')
+            ->where('student_id', $student_id)->where('club_id', $club_id)->first();
+
+        if (!is_null($activity)) $activity->update([
+            'out_time' => new DateTime(),
+        ]);
 
         Visitor::query()->where('student_id', $student_id)->delete();
     }
