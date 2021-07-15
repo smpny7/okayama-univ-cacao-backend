@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('login', 302, [], !app()->isLocal());
+    return view('welcome');
 });
 
 Auth::routes(['register' => false]);
