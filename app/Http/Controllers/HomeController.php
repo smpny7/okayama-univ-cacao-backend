@@ -26,9 +26,16 @@ class HomeController extends Controller
     public function rooms(): Renderable
     {
         $rooms = Club::query()->get();
-
         foreach ($rooms as $room)
             $room->active = $room->getNumOfActivePeople();
+
         return view('rooms')->with('rooms', $rooms);
+    }
+
+    public function edit(): Renderable
+    {
+        $rooms = Club::query()->get();
+
+        return view('edit')->with('rooms', $rooms);
     }
 }
