@@ -25,17 +25,38 @@ class HomeController extends Controller
 
     public function rooms(): Renderable
     {
-        $rooms = Club::query()->get();
+        $rooms = Club::query()->where('is_admin', 0)->get();
         foreach ($rooms as $room)
             $room->active = $room->getNumOfActivePeople();
 
         return view('rooms')->with('rooms', $rooms);
     }
 
-    public function edit(): Renderable
+    public function list(): Renderable
     {
         $rooms = Club::query()->get();
 
-        return view('edit')->with('rooms', $rooms);
+        return view('rooms.list')->with('rooms', $rooms);
+    }
+
+    public function edit($club_id): Renderable
+    {
+        $club = Club::query()->findOrFail($club_id);
+
+        return view('rooms.edit')->with('club', $club);
+    }
+
+    public function update(Request $request, $club_id)
+    {
+        $club = Club::query()->findOrFail($club_id);
+        $club->name = $request->input('name');
+        $club->image_path = $request->input('image_path');
+        $club->save();
+
+        $rooms = Club::query()->get();
+        foreach ($rooms as $room)
+            $room->active = $room->getNumOfActivePeople();
+
+        return view('rooms.list')->with('rooms', $rooms);
     }
 }

@@ -22,4 +22,6 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/rooms', [App\Http\Controllers\HomeController::class, 'rooms'])->name('rooms');
-Route::get('/rooms/edit', [App\Http\Controllers\HomeController::class, 'edit'])->name('edit');
+Route::get('/rooms/list', [App\Http\Controllers\HomeController::class, 'list'])->name('rooms.list');
+Route::get('/rooms/edit/{club_id}', [App\Http\Controllers\HomeController::class, 'edit'])->name('rooms.edit');
+Route::post('/rooms/update/{club_id}', [App\Http\Controllers\HomeController::class, 'update'])->name('rooms.update');
