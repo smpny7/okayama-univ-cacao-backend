@@ -5,7 +5,10 @@ module.exports = {
         extend: {
             colors: {
                 themeColor: '#FF839C',
-            }
+            },
+            screens: {
+                'print': {'raw': 'print'},
+            },
         },
     },
     variants: {

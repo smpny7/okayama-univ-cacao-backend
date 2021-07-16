@@ -22,6 +22,9 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/rooms', [App\Http\Controllers\HomeController::class, 'rooms'])->name('rooms');
-Route::get('/rooms/list', [App\Http\Controllers\HomeController::class, 'list'])->name('rooms.list');
+Route::get('/rooms/index', [App\Http\Controllers\HomeController::class, 'index'])->name('rooms.index');
+Route::get('/rooms/create', [App\Http\Controllers\HomeController::class, 'create'])->name('rooms.create');
 Route::get('/rooms/edit/{club_id}', [App\Http\Controllers\HomeController::class, 'edit'])->name('rooms.edit');
+Route::post('/rooms/register', [App\Http\Controllers\HomeController::class, 'register'])->name('rooms.register');
 Route::post('/rooms/update/{club_id}', [App\Http\Controllers\HomeController::class, 'update'])->name('rooms.update');
+Route::get('/rooms/regenerate/{club_id}', [App\Http\Controllers\HomeController::class, 'regenerate'])->name('rooms.regenerate');
