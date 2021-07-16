@@ -6,20 +6,20 @@
             <ul class="flex items-center hidden space-x-8 lg:flex">
                 <li>
                     <a
-                        href="/"
-                        aria-label="校友会一覧"
-                        title="校友会一覧"
+                        href="/home"
+                        aria-label="ホーム"
+                        title="ホーム"
                         class="font-medium tracking-wide text-gray-700 tracking-widest transition-colors duration-200 hover:text-deep-purple-accent-400"
-                    >校友会一覧</a
+                    >ホーム</a
                     >
                 </li>
                 <li>
                     <a
-                        href="/"
-                        aria-label="サークル一覧"
-                        title="サークル一覧"
+                        href="/rooms"
+                        aria-label="部屋一覧"
+                        title="部屋一覧"
                         class="font-medium tracking-wide text-gray-700 tracking-widest transition-colors duration-200 hover:text-deep-purple-accent-400"
-                    >サークル一覧</a
+                    >部屋一覧</a
                     >
                 </li>
                 <li>
@@ -38,7 +38,7 @@
                 title="cacao"
                 class="inline-flex items-center lg:mx-auto"
             >
-                <img :src="'/img/cacao.svg'" class="h-14" alt="cacao">
+                <img src="/img/cacao.svg" class="h-14" alt="cacao">
             </a>
             <ul class="flex items-center hidden ml-auto space-x-8 lg:flex">
                 <li v-if="isLoggedIn">
@@ -91,11 +91,11 @@
                             <div>
                                 <a
                                     href="/"
-                                    aria-label="Company"
-                                    title="Company"
+                                    aria-label="cacao"
+                                    title="cacao"
                                     class="inline-flex items-center"
                                 >
-                                    <img :src="'/img/cacao.svg'" class="h-14" alt="cacao">
+                                    <img src="/img/cacao.svg" class="h-14" alt="cacao">
                                 </a>
                             </div>
                             <div>
@@ -118,20 +118,20 @@
                             <ul class="space-y-4">
                                 <li>
                                     <a
-                                        href="/"
-                                        aria-label="校友会一覧"
-                                        title="校友会一覧"
+                                        href="/home"
+                                        aria-label="ホーム"
+                                        title="ホーム"
                                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                                    >校友会一覧</a
+                                    >ホーム</a
                                     >
                                 </li>
                                 <li>
                                     <a
-                                        href="/"
-                                        aria-label="サークル一覧"
-                                        title="サークル一覧"
+                                        href="/rooms"
+                                        aria-label="部屋一覧"
+                                        title="部屋一覧"
                                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                                    >サークル一覧</a
+                                    >部屋一覧</a
                                     >
                                 </li>
                                 <li>
