@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,13 +18,17 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function home(): Renderable
     {
         return view('home');
+    }
+
+    public function rooms(): Renderable
+    {
+        $rooms = Club::query()->get();
+
+        foreach ($rooms as $room)
+            $room->active = $room->getNumOfActivePeople();
+        return view('rooms')->with('rooms', $rooms);
     }
 }

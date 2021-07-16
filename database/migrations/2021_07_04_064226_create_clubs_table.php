@@ -19,6 +19,7 @@ class CreateClubsTable extends Migration
             $table->string('login_id')->unique();
             $table->string('password');
             $table->boolean('is_admin')->default(false);
+            $table->string('image_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

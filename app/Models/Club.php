@@ -54,4 +54,10 @@ class Club extends Authenticatable
     {
         return $this->query()->where('login_id', $username)->first();
     }
+
+    public function getNumOfActivePeople(): int
+    {
+        $club_id = $this->id;
+        return Visitor::query()->where('club_id', $club_id)->count();
+    }
 }
