@@ -28,3 +28,6 @@ Route::get('/rooms/edit/{club_id}', [App\Http\Controllers\HomeController::class,
 Route::post('/rooms/register', [App\Http\Controllers\HomeController::class, 'register'])->name('rooms.register');
 Route::post('/rooms/update/{club_id}', [App\Http\Controllers\HomeController::class, 'update'])->name('rooms.update');
 Route::get('/rooms/regenerate/{club_id}', [App\Http\Controllers\HomeController::class, 'regenerate'])->name('rooms.regenerate');
+
+Route::get('/tracking', [App\Http\Controllers\HomeController::class, 'tracking'])->name('tracking');
+Route::post('/tracking', [App\Http\Controllers\HomeController::class, 'search'])->name('tracking.search');

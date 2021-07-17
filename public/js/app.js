@@ -38012,7 +38012,11 @@ var staticRenderFns = [
             {
               staticClass:
                 "font-medium tracking-wide text-gray-700 tracking-widest transition-colors duration-200 hover:text-deep-purple-accent-400",
-              attrs: { href: "/", "aria-label": "接触追跡", title: "接触追跡" }
+              attrs: {
+                href: "/tracking",
+                "aria-label": "接触追跡",
+                title: "接触追跡"
+              }
             },
             [_vm._v("接触追跡")]
           )
@@ -38100,7 +38104,11 @@ var staticRenderFns = [
         {
           staticClass:
             "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400",
-          attrs: { href: "/", "aria-label": "接触追跡", title: "接触追跡" }
+          attrs: {
+            href: "/tracking",
+            "aria-label": "接触追跡",
+            title: "接触追跡"
+          }
         },
         [_vm._v("接触追跡")]
       )

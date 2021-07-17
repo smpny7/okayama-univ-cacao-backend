@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Club;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Symfony\Component\ErrorHandler\Debug;
 
 class HomeController extends Controller
 {
@@ -96,5 +100,42 @@ class HomeController extends Controller
         $qr_code = QrCode::size(500)->generate('id=' . $login_id . '&password=' . $password);
 
         return view('rooms.show')->with(['qr_code' => $qr_code, 'room_name' => $club->name]);
+    }
+
+    public function tracking()
+    {
+        return view('tracking');
+    }
+
+    public function search(Request $request)
+    {
+        $student_id = strtoupper($request->input('student_id'));
+        $twoWeeksAgo = Carbon::today()->subDays(14);
+        $students = [];
+
+        $clubs = Club::query()->get(['id', 'name']);
+        $activities = Activity::query()->whereDate('in_time', '>', $twoWeeksAgo)->where('student_id', $student_id)->orderByDesc('in_time')->get();
+        foreach ($activities as $activity) {
+            $raw = Activity::query()
+                ->where('student_id', '<>', $student_id)
+                ->where('club_id', $activity->club_id)
+                ->where('in_time', '<', Carbon::parse($activity->out_time))
+                ->where('out_time', '>', Carbon::parse($activity->in_time))
+                ->get();
+            foreach ($raw as $data) {
+                $from = Carbon::parse($activity->in_time)->gte(Carbon::parse($data->in_time)) ? Carbon::parse($activity->in_time) : Carbon::parse($data->in_time);
+                $to = Carbon::parse($activity->out_time)->gte(Carbon::parse($data->out_time)) ? Carbon::parse($data->out_time) : Carbon::parse($activity->out_time);
+                $export = array(
+                    'date' => date('Y/m/d', strtotime($data->in_time)),
+                    'student_id' => $data->student_id,
+                    'club_id' => $clubs->find($data->club_id)->name,
+                    'time' => $from->format('H:i') . ' 〜 ' . $to->format('H:i'),
+                    'status' => $to->diffInMinutes($from) >= 15
+                );
+                array_push($students, $export);
+            }
+        }
+
+        return view('tracking')->with(['students' => $students, 'student_id' => $student_id]);
     }
 }

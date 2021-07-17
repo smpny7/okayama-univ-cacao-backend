@@ -24,7 +24,7 @@
                 </li>
                 <li>
                     <a
-                        href="/"
+                        href="/tracking"
                         aria-label="接触追跡"
                         title="接触追跡"
                         class="font-medium tracking-wide text-gray-700 tracking-widest transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -136,7 +136,7 @@
                                 </li>
                                 <li>
                                     <a
-                                        href="/"
+                                        href="/tracking"
                                         aria-label="接触追跡"
                                         title="接触追跡"
                                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
