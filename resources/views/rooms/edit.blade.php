@@ -9,7 +9,7 @@
                 @if(!isset($club) || !$club->is_admin)
                     <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
                         <img class="object-cover object-center rounded" alt="hero"
-                             src="{{ $club->image_path ?? 'http://placehold.jp/24/FFE7EC/FE6A88/600x400.png?text=%E7%94%BB%E5%83%8F%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%9B%E3%82%93' }}">
+                             src="{{ $club->image_path ?? 'https://cacao-app.com/img/club.webp' }}">
                     </div>
                 @endif
                 <div
