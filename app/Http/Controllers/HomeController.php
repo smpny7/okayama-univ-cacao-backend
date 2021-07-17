@@ -61,7 +61,7 @@ class HomeController extends Controller
     {
         $login_id = Str::random(15);
         $password = Str::random(15);
-        Club::query()->create(['name' => $request->input('name'), 'login_id' => $login_id, 'password' => Hash::make($password)]);
+        Club::query()->create(['name' => $request->input('name'), 'login_id' => $login_id, 'password' => Hash::make($password), 'image_path' => $request->input('image_path')]);
 
         $qr_code = QrCode::size(500)->generate('id=' . $login_id . '&password=' . $password);
 

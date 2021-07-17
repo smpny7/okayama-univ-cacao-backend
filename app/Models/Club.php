@@ -24,6 +24,7 @@ class Club extends Authenticatable
         'name',
         'login_id',
         'password',
+        'image_path',
     ];
 
     /**
