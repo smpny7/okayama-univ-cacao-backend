@@ -22,6 +22,10 @@ Route::get('/privacyPolicy', function () {
     return view('privacyPolicy');
 });
 
+Route::get('/guidelinesForHealth', function () {
+    return view('guidelinesForHealth');
+});
+
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
