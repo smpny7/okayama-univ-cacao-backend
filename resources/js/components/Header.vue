@@ -22,6 +22,15 @@
                     >部屋一覧</a
                     >
                 </li>
+                <li>
+                    <a
+                        href="/tracking"
+                        aria-label="接触追跡"
+                        title="接触追跡"
+                        class="font-medium tracking-wide text-gray-700 tracking-widest transition-colors duration-200 hover:text-deep-purple-accent-400"
+                    >接触追跡</a
+                    >
+                </li>
             </ul>
             <a
                 href="/"
@@ -47,10 +56,10 @@
                     <a
                         href="/login"
                         class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-themeColor focus:shadow-outline focus:outline-none"
-                        aria-label="ログイン"
-                        title="ログイン"
+                        aria-label="管理者ログイン"
+                        title="管理者ログイン"
                     >
-                        ログイン
+                        管理者ログイン
                     </a>
                 </li>
             </ul>
@@ -125,6 +134,15 @@
                                     >部屋一覧</a
                                     >
                                 </li>
+                                <li>
+                                    <a
+                                        href="/tracking"
+                                        aria-label="接触追跡"
+                                        title="接触追跡"
+                                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                    >接触追跡</a
+                                    >
+                                </li>
                                 <li v-if="isLoggedIn">
                                     <a
                                         href="/logout"
@@ -138,10 +156,10 @@
                                     <a
                                         href="/login"
                                         class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-themeColor focus:shadow-outline focus:outline-none"
-                                        aria-label="ログイン"
-                                        title="ログイン"
+                                        aria-label="管理者ログイン"
+                                        title="管理者ログイン"
                                     >
-                                        ログイン
+                                        管理者ログイン
                                     </a>
                                 </li>
                             </ul>

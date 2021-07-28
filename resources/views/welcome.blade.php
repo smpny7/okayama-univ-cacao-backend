@@ -22,12 +22,14 @@
           </defs>
           <rect fill="url(#6b0188f3-b7a1-4e9b-b95e-cad916bb3042)" width="52" height="24"></rect>
         </svg>
-        <span class="relative bg-white text-gradient">サンプルテキスト</span>
+        <span class="relative bg-white text-gradient">接触者追跡アプリ、</span>
       </span>
-                {{--<span class="text-5xl text-gradient">cacao</span>--}}
+                <span class="text-5xl text-gradient">cacao</span>
             </h2>
             <p class="mt-12 text-base text-gray-700 tracking-widest md:text-lg">
-                サンプル説明、以下にストアのリンクを埋めること。
+                部屋を登録するだけで、その部屋に入った人物を追跡。<br>
+                体育館や講義室など、どこにでも設置することができ、簡単に追跡を始められます。<br>
+                追跡する部屋が多くなるほど、接触者の判定も向上していきます。
             </p>
             <hr class="my-8 border-gray-300"/>
             <div class="flex items-center mb-3 sm:justify-center">
