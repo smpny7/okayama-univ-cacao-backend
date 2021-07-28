@@ -24,7 +24,7 @@
                 @foreach($rooms as $room)
                     <div>
                         <img class="object-cover w-full h-56 mb-6 rounded shadow-lg md:h-64 xl:h-60"
-                             src="{{ $room->image_path ?? 'http://seikagai.ccsv.okayama-u.ac.jp/img/pagetitle.jpg' }}"
+                             src="{{ $room->image_path ?? 'https://cacao-app.com/img/club.webp' }}"
                              alt="{{ $room->name }}"/>
                         <p class="mb-2 text-xl font-bold leading-none sm:text-2xl">
                             {{ $room->name }}
