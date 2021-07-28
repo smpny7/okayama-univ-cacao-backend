@@ -34,7 +34,7 @@
             <hr class="my-8 border-gray-300"/>
             <div class="flex items-center mb-3 sm:justify-center">
                 <div class="flex-row">
-                    <button
+                    <a href="https://play.google.com/store/apps/details?id=com.cacao&hl=ja&gl=JP" target="_blank" ref="noopenner noreferrer"
                         class="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6"
                              viewBox="0 0 512 512">
@@ -45,8 +45,8 @@
                             <span class="text-xs text-gray-600 mb-1">GET IT ON</span>
                             <span class="title-font font-medium">Google Play</span>
                         </span>
-                    </button>
-                    <button
+                    </a>
+                    <a href="https://apps.apple.com/jp/app/cacao/id1577030127" target="_blank" ref="noopenner noreferrer"
                         class="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center ml-4 md:mt-4 mt-0 lg:mt-0 hover:bg-gray-200 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6"
                              viewBox="0 0 305 305">
@@ -59,7 +59,7 @@
                             <span class="text-xs text-gray-600 mb-1">Download on the</span>
                             <span class="title-font font-medium">App Store</span>
                         </span>
-                    </button>
+                    </a>
                 </div>
             </div>
             <p class="mt-6 text-xs text-gray-600 sm:text-sm sm:mx-auto">
