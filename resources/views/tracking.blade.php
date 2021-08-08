@@ -76,10 +76,10 @@
                                 <td class="py-3 px-6 text-center">
                                     @if($student['status'])
                                         <span
-                                            class="bg-red-100 text-red-600 py-1 px-3 rounded-full text-xs">濃厚接触者</span>
+                                            class="bg-red-100 text-red-600 py-1 px-3 rounded-full text-xs">15分以上接触</span>
                                     @else
                                         <span
-                                            class="bg-yellow-100 text-yellow-600 py-1 px-3 rounded-full text-xs">注意</span>
+                                            class="bg-yellow-100 text-yellow-600 py-1 px-3 rounded-full text-xs">15分未満接触</span>
                                     @endif
                                 </td>
                             </tr>
