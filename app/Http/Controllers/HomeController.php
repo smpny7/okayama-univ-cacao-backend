@@ -8,10 +8,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Symfony\Component\ErrorHandler\Debug;
 
 class HomeController extends Controller
 {
@@ -114,12 +112,13 @@ class HomeController extends Controller
         $students = [];
 
         $clubs = Club::query()->get(['id', 'name']);
-        $activities = Activity::query()->whereDate('in_time', '>', $twoWeeksAgo)->where('student_id', $student_id)->orderByDesc('in_time')->get();
+        $activities = Activity::query()->whereDate('in_time', '>', $twoWeeksAgo)->where('student_id', $student_id)->whereNotNull('out_time')->orderByDesc('in_time')->get();
         foreach ($activities as $activity) {
             $raw = Activity::query()
                 ->where('student_id', '<>', $student_id)
                 ->where('club_id', $activity->club_id)
                 ->where('in_time', '<', Carbon::parse($activity->out_time))
+                ->whereNotNull('out_time')
                 ->where('out_time', '>', Carbon::parse($activity->in_time))
                 ->get();
             foreach ($raw as $data) {
