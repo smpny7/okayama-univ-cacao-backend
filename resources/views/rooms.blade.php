@@ -23,14 +23,19 @@
             <div class="grid gap-8 row-gap-5 mb-8 lg:grid-cols-3 lg:row-gap-8">
                 @foreach($rooms as $room)
                     <div>
-                        <img class="object-cover w-full h-56 mb-6 rounded shadow-lg md:h-64 xl:h-60"
-                             src="{{ $room->image_path ?? 'https://cacao-app.com/img/club.webp' }}"
-                             alt="{{ $room->name }}"/>
+                        <div class="relative">
+                            <img class="object-cover w-full h-56 mb-6 rounded shadow-lg md:h-64 xl:h-60"
+                                 src="{{ $room->image_path ?? 'https://cacao-app.com/img/club.webp' }}"
+                                 alt="{{ $room->name }}"/>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-bold px-4 py-2 rounded-lg text-sm text-white tracking-widest
+                                            @if($room->active == 0) bg-gray-300 @else bg-themeColor @endif">
+                                    {{ $room->active . '人' }}
+                                </span>
+                            </div>
+                        </div>
                         <p class="mb-2 text-xl font-bold leading-none sm:text-2xl">
                             {{ $room->name }}
-                            @if($room->active > 0)
-                                {{ '（' . $room->active . '人）' }}
-                            @endif
                         </p>
                     </div>
                 @endforeach
