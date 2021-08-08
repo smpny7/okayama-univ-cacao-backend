@@ -27,7 +27,8 @@
                     class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
                     <div class="relative flex-grow w-full">
                         <label for="student_id" class="leading-7 text-sm text-gray-600">学籍番号</label>
-                        <input type="text" id="student_id" name="student_id" value="{{  $student_id ?? '' }}" autocapitalize="on"
+                        <input type="text" id="student_id" name="student_id" value="{{  $student_id ?? '' }}"
+                               autocapitalize="on"
                                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-themeColor focus:bg-transparent focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                     </div>
                     <button type="submit"
@@ -38,7 +39,13 @@
             </form>
 
             @isset($students)
-                <p class="mt-4 text-themeColor text-right tracking-widest">{{ '検索結果: ' . count($students) . ' 名' }}</p>
+                <div class="mt-4 text-right">
+                    @empty(!$student_id)
+                        <a class="mr-4 text-gray-500 tracking-widest"
+                           href="{{ route('tracking.downloadCSV', ['student_id' => $student_id]) }}">ダウンロード</a>
+                    @endempty
+                    <p class="inline-block text-themeColor tracking-widest">{{ '検索結果: ' . count($students) . ' 名' }}</p>
+                </div>
                 <div class="bg-white shadow-md Erounded mb-6 mt-3">
                     <table class="min-w-max w-full table-auto">
                         <thead>

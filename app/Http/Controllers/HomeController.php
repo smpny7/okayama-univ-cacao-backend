@@ -8,7 +8,12 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Laracsv\Export;
+use League\Csv\ByteSequence;
+use League\Csv\CannotInsertRecord;
+use League\Flysystem\Exception;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class HomeController extends Controller
@@ -108,6 +113,55 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $student_id = strtoupper($request->input('student_id'));
+        $students = $this->getListOfContacts($student_id);
+
+        return view('tracking')->with(['students' => $students, 'student_id' => strtoupper($request->input('student_id'))]);
+    }
+
+    public function downloadCSV($student_id)
+    {
+        $student_id = strtoupper($student_id);
+
+        $students = $this->getListOfContacts($student_id);
+
+        try {
+            $csvFileName = '/tmp/' . time() . rand() . '.csv';
+            $fileName = $student_id . '.csv';
+            $res = fopen($csvFileName, 'w');
+            if ($res === FALSE) throw new Exception('ファイルの書き込みに失敗しました。');
+
+            $header = [
+                mb_convert_encoding('日付', 'SJIS'),
+                mb_convert_encoding('学籍番号', 'SJIS'),
+                mb_convert_encoding('接触部屋', 'SJIS'),
+                mb_convert_encoding('接触時間', 'SJIS'),
+                mb_convert_encoding('ステータス', 'SJIS')
+            ];
+
+            fputcsv($res, $header);
+
+            foreach ($students as $dataInfo) {
+                $dataInfo['status'] = $dataInfo['status'] ? '15分以上接触' : '';
+                mb_convert_variables('SJIS', 'UTF-8', $dataInfo);
+                fputcsv($res, $dataInfo);
+            }
+
+            fclose($res);
+
+            header('Content-Type: application/octet-stream');
+
+            header('Content-Disposition: attachment; filename=' . $fileName);
+            header('Content-Length: ' . filesize($csvFileName));
+            header('Content-Transfer-Encoding: binary');
+            readfile($csvFileName);
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getListOfContacts($student_id): array
+    {
         $twoWeeksAgo = Carbon::today()->subDays(14);
         $students = [];
 
@@ -134,7 +188,6 @@ class HomeController extends Controller
                 array_push($students, $export);
             }
         }
-
-        return view('tracking')->with(['students' => $students, 'student_id' => $student_id]);
+        return $students;
     }
 }

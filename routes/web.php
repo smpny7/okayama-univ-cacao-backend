@@ -39,3 +39,4 @@ Route::get('/rooms/regenerate/{club_id}', [App\Http\Controllers\HomeController::
 
 Route::get('/tracking', [App\Http\Controllers\HomeController::class, 'tracking'])->name('tracking');
 Route::post('/tracking', [App\Http\Controllers\HomeController::class, 'search'])->name('tracking.search');
+Route::get('/tracking/download/{student_id}', [App\Http\Controllers\HomeController::class, 'downloadCSV'])->name('tracking.downloadCSV');
