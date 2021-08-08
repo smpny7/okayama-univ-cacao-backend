@@ -38,8 +38,8 @@
             </form>
 
             @isset($students)
-                <div class="bg-white shadow-md rounded my-6">
-                    <p class="mb-2 text-themeColor text-right tracking-widest">{{ '検索結果: ' . count($students) . ' 名' }}</p>
+                <p class="mt-4 text-themeColor text-right tracking-widest">{{ '検索結果: ' . count($students) . ' 名' }}</p>
+                <div class="bg-white shadow-md Erounded mb-6 mt-3">
                     <table class="min-w-max w-full table-auto">
                         <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
