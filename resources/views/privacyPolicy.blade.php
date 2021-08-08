@@ -1,57 +1,70 @@
 @extends('layouts.app')
+@section('hideHeader', true)
 
 @section('content')
-    <div class="md:mt-12 px-4 py-4 md:py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        <div class="max-w-3xl sm:mx-auto">
-            <strong>Privacy Policy</strong>
-            <p>
+    <div
+        class="px-4 py-4 md:py-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
+        <div class="sm:mx-auto">
+            <p class="mb-3 text-lg"><strong>Privacy Policy</strong></p>
+            <p class="text-sm">
                 Kaito Ikeda built the cacao app as
                 an Open Source app. This SERVICE is provided by
                 Kaito Ikeda at no cost and is intended for use as
                 is.
             </p>
-            <p>
+            <br>
+            <p class="text-sm">
                 This page is used to inform visitors regarding my
                 policies with the collection, use, and disclosure of Personal
                 Information if anyone decided to use my Service.
             </p>
-            <p>
+            <br>
+            <p class="text-sm">
                 If you choose to use my Service, then you agree to
                 the collection and use of information in relation to this
                 policy. The Personal Information that I collect is
                 used for providing and improving the Service. I will not use or share your information with
                 anyone except as described in this Privacy Policy.
             </p>
-            <p>
+            <br>
+            <p class="text-sm">
                 The terms used in this Privacy Policy have the same meanings
                 as in our Terms and Conditions, which is accessible at
                 cacao unless otherwise defined in this Privacy Policy.
             </p>
-            <p><strong>Information Collection and Use</strong></p>
-            <p>
+            <br>
+            <br>
+
+            <p class="mb-3 text-lg"><strong>Information Collection and Use</strong></p>
+            <p class="text-sm">
                 For a better experience, while using our Service, I
                 may require you to provide us with certain personally
                 identifiable information, including but not limited to Okayama University Student ID. The information
                 that
                 I request will be retained on your device and is not collected by me in any way.
             </p>
-            <div><p>
+            <br>
+            <div><p class="text-sm">
                     The app does use third party services that may collect
                     information used to identify you.
                 </p>
-                <p>
+                <br>
+                <p class="text-sm">
                     Link to privacy policy of third party service providers used
                     by the app
                 </p>
                 <ul>
-                    <li><a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer">Google
-                            Play
-                            Services</a></li><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
-                    <!----><!----><!---->
-                    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----></ul>
+                    <li class="text-sm">
+                        ・<a class="text-themeColor" href="https://www.google.com/policies/privacy/"
+                                           target="_blank" rel="noopener noreferrer">Google Play Services</a>
+                    </li>
+                </ul>
             </div>
-            <p><strong>Log Data</strong></p>
-            <p>
+            <br>
+            <br>
+
+            <p class="mb-3 text-lg"><strong>Log Data</strong></p>
+            <p class="text-sm">
                 I want to inform you that whenever you
                 use my Service, in a case of an error in the app
                 I collect data and information (through third party
@@ -62,14 +75,18 @@
                 the time and date of your use of the Service, and other
                 statistics.
             </p>
-            <p><strong>Cookies</strong></p>
-            <p>
+            <br>
+            <br>
+
+            <p class="mb-3 text-lg"><strong>Cookies</strong></p>
+            <p class="text-sm">
                 Cookies are files with a small amount of data that are
                 commonly used as anonymous unique identifiers. These are sent
                 to your browser from the websites that you visit and are
                 stored on your device's internal memory.
             </p>
-            <p>
+            <br>
+            <p class="text-sm">
                 This Service does not use these “cookies” explicitly. However,
                 the app may use third party code and libraries that use
                 “cookies” to collect information and improve their services.
@@ -78,26 +95,34 @@
                 choose to refuse our cookies, you may not be able to use some
                 portions of this Service.
             </p>
-            <p><strong>Service Providers</strong></p>
-            <p>
+            <br>
+            <br>
+
+            <p class="mb-3 text-lg"><strong>Service Providers</strong></p>
+            <p class="text-sm">
                 I may employ third-party companies and
                 individuals due to the following reasons:
             </p>
-            <ul>
-                <li>To facilitate our Service;</li>
-                <li>To provide the Service on our behalf;</li>
-                <li>To perform Service-related services; or</li>
-                <li>To assist us in analyzing how our Service is used.</li>
+            <br>
+            <ul class="text-sm">
+                <li>・To facilitate our Service;</li>
+                <li>・To provide the Service on our behalf;</li>
+                <li>・To perform Service-related services; or</li>
+                <li>・To assist us in analyzing how our Service is used.</li>
             </ul>
-            <p>
+            <br>
+            <p class="text-sm">
                 I want to inform users of this Service
                 that these third parties have access to your Personal
                 Information. The reason is to perform the tasks assigned to
                 them on our behalf. However, they are obligated not to
                 disclose or use the information for any other purpose.
             </p>
-            <p><strong>Security</strong></p>
-            <p>
+            <br>
+            <br>
+
+            <p class="mb-3 text-lg"><strong>Security</strong></p>
+            <p class="text-sm">
                 I value your trust in providing us your
                 Personal Information, thus we are striving to use commercially
                 acceptable means of protecting it. But remember that no method
@@ -105,8 +130,11 @@
                 storage is 100% secure and reliable, and I cannot
                 guarantee its absolute security.
             </p>
-            <p><strong>Links to Other Sites</strong></p>
-            <p>
+            <br>
+            <br>
+
+            <p class="mb-3 text-lg"><strong>Links to Other Sites</strong></p>
+            <p class="text-sm">
                 This Service may contain links to other sites. If you click on
                 a third-party link, you will be directed to that site. Note
                 that these external sites are not operated by me.
@@ -116,8 +144,11 @@
                 privacy policies, or practices of any third-party sites or
                 services.
             </p>
-            <p><strong>Children’s Privacy</strong></p>
-            <p>
+            <br>
+            <br>
+
+            <p class="mb-3 text-lg"><strong>Children’s Privacy</strong></p>
+            <p class="text-sm">
                 These Services do not address anyone under the age of 13.
                 I do not knowingly collect personally
                 identifiable information from children under 13 years of age. In the case
@@ -128,24 +159,37 @@
                 personal information, please contact me so that
                 I will be able to do necessary actions.
             </p>
-            <p><strong>Changes to This Privacy Policy</strong></p>
-            <p>
+            <br>
+            <br>
+
+            <p class="mb-3 text-lg"><strong>Changes to This Privacy Policy</strong></p>
+            <p class="text-sm">
                 I may update our Privacy Policy from
                 time to time. Thus, you are advised to review this page
                 periodically for any changes. I will
                 notify you of any changes by posting the new Privacy Policy on
                 this page.
             </p>
-            <p>This policy is effective as of 2021-07-12</p>
-            <p><strong>Contact Us</strong></p>
-            <p>
+            <br>
+            <p class="text-sm">This policy is effective as of 2021-07-12</p>
+            <br>
+            <br>
+
+            <p class="mb-3 text-lg"><strong>Contact Us</strong></p>
+            <p class="text-sm">
                 If you have any questions or suggestions about my
                 Privacy Policy, do not hesitate to contact me at developer.ikep@gmail.com.
             </p>
-            <p>This privacy policy page was created at <a href="https://privacypolicytemplate.net" target="_blank"
-                                                          rel="noopener noreferrer">privacypolicytemplate.net </a>and
-                modified/generated by <a href="https://app-privacy-policy-generator.nisrulz.com/" target="_blank"
-                                         rel="noopener noreferrer">App Privacy Policy Generator</a></p>
+            <br>
+            <p class="text-sm">This privacy policy page was created at
+                <a class="text-themeColor"
+                   href="https://privacypolicytemplate.net"
+                   target="_blank"
+                   rel="noopener noreferrer">privacypolicytemplate.net </a>
+                and modified/generated by
+                <a class="text-themeColor"
+                   href="https://app-privacy-policy-generator.nisrulz.com/" target="_blank"
+                   rel="noopener noreferrer">App Privacy Policy Generator</a></p>
         </div>
     </div>
 @endsection

@@ -26,6 +26,9 @@ Route::get('/guidelinesForHealth', function () {
     return view('guidelinesForHealth');
 });
 
+Route::get('/notice', [App\Http\Controllers\NoticeController::class, 'index'])->name('notice');
+
+
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');

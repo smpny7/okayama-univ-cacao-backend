@@ -26,9 +26,15 @@
 </head>
 <body>
 <div id="app">
-    <header-component
-        :is-logged-in="{{ json_encode(\Illuminate\Support\Facades\Auth::check()) }}"
-        :csrf="{{ json_encode(csrf_token()) }}"></header-component>
+    @hasSection('hideHeader')
+        <div class="md:px-20 lg:px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
+            <img src="{{ asset('img/cacao.svg') }}" class="h-10 ml-4 mt-6" alt="cacao">
+        </div>
+    @else
+        <header-component
+            :is-logged-in="{{ json_encode(\Illuminate\Support\Facades\Auth::check()) }}"
+            :csrf="{{ json_encode(csrf_token()) }}"></header-component>
+    @endif
 
     <main class="py-4">
         @yield('content')
