@@ -39,9 +39,8 @@
             <p class="text-sm">
                 For a better experience, while using our Service, I
                 may require you to provide us with certain personally
-                identifiable information, including but not limited to Okayama University Student ID. The information
-                that
-                I request will be retained on your device and is not collected by me in any way.
+                identifiable information, including but not limited to Okayama University Student ID, body temperature,
+                and health status.
             </p>
             <br>
             <div><p class="text-sm">
@@ -56,7 +55,7 @@
                 <ul>
                     <li class="text-sm">
                         ・<a class="text-themeColor" href="https://www.google.com/policies/privacy/"
-                                           target="_blank" rel="noopener noreferrer">Google Play Services</a>
+                            target="_blank" rel="noopener noreferrer">Google Play Services</a>
                     </li>
                 </ul>
             </div>
