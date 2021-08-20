@@ -15,14 +15,12 @@
                     </div>
                     <h2 class="font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl">
                         <span class="inline-block ml-4 tracking-widest">部屋追加 / 編集</span>
-                        <div
-                            class="h-1 ml-auto duration-300 origin-left transform bg-deep-purple-accent-400 scale-x-30 group-hover:scale-x-100"></div>
                     </h2>
                 </div>
             </div>
 
             <div class="text-right pb-6">
-                <a href="/rooms/create"
+                <a href="{{ route('rooms.create') }}"
                    class="px-10 py-4 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-themeColor focus:shadow-outline focus:outline-none"
                    aria-label="新規追加"
                    title="新規追加">
@@ -57,7 +55,8 @@
                             <td class="py-3 px-6 text-center">
                                 @if(!$room->is_admin)
                                     <div class="flex items-center justify-center">
-                                        <a href="{{ route('rooms.regenerate', ['club_id' => $room->id]) }}" class="text-themeColor underline"
+                                        <a href="{{ route('rooms.regenerate', ['club_id' => $room->id]) }}"
+                                           class="text-themeColor underline"
                                            onclick="return confirm('この部屋IDで認証している端末は強制ログアウトされます。\nよろしいですか？')">リセットして再生成
                                             ></a>
                                     </div>
@@ -74,7 +73,7 @@
                             </td>
                             <td class="py-3 px-6 text-center">
                                 <div class="flex item-center justify-center">
-                                    <a href="/rooms/edit/{{ $room->id }}"
+                                    <a href="{{ route('rooms.edit', ['club_id' => $room->id]) }}"
                                        class="block w-4 mr-2 transform hover:text-themeColor hover:scale-110">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke="currentColor">
