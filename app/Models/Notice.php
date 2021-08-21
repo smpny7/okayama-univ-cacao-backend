@@ -4,14 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 class Notice extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $dates = ['released_at', 'deleted_at'];
+
+    protected $fillable = ['contents', 'sender_name', 'sender_icon_url'];
+
+    public function isPublished()
+    {
+        return $this->released_at->lte(Carbon::now());
+    }
 
     public function getFuzzyTime()
     {
-        return $this->convert_to_fuzzy_time($this->created_at);
+        return $this->convert_to_fuzzy_time($this->released_at);
     }
 
     function convert_to_fuzzy_time($time_db)
