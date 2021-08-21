@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class NoticeController extends Controller
 {
@@ -51,14 +51,20 @@ class NoticeController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        Notice::query()->create([
-            'sender_name' => $request->input('sender_name'),
-            'sender_icon_url' => $request->input('sender_icon_url'),
-            'released_at' => $request->input('released_at'),
-            'contents' => $request->input('contents'),
-        ]);
+        try {
+            Notice::query()->create([
+                'sender_name' => $request->input('sender_name'),
+                'sender_icon_url' => $request->input('sender_icon_url'),
+                'released_at' => $request->input('released_at'),
+                'contents' => $request->input('contents'),
+            ]);
 
-        return redirect()->route('notices.index');
+            return redirect()->route('notices.index')
+                ->with('alert_success', '新しいお知らせを作成しました。');
+        } catch (Throwable $e) {
+            return redirect()->route('notices.index')
+                ->with('alert_error', 'エラーが発生しました。');
+        }
     }
 
     /**
@@ -92,11 +98,12 @@ class NoticeController extends Controller
 
         try {
             $notice->saveOrFail();
-        } catch (\Throwable $e) {
-            Log::error($e);
+            return redirect()->route('notices.index')
+                ->with('alert_success', 'お知らせを更新しました。');
+        } catch (Throwable $e) {
+            return redirect()->route('notices.index')
+                ->with('alert_error', 'お知らせの更新に失敗しました。');
         }
-
-        return redirect()->route('notices.index');
     }
 
     /**
@@ -107,9 +114,15 @@ class NoticeController extends Controller
      */
     public function destroy(int $id): RedirectResponse
     {
-        $notice = Notice::query()->findOrFail($id);
-        $notice->delete();
+        try {
+            $notice = Notice::query()->findOrFail($id);
+            $notice->delete();
 
-        return redirect()->route('notices.index');
+            return redirect()->route('notices.index')
+                ->with('alert_success', 'お知らせを削除しました。');
+        } catch (Throwable $e) {
+            return redirect()->route('notices.index')
+                ->with('alert_error', 'お知らせの削除に失敗しました。');
+        }
     }
 }

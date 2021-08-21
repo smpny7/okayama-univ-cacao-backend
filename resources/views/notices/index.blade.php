@@ -28,6 +28,73 @@
                 </a>
             </div>
 
+            @if (session('alert_success'))
+                <div id="alert_success"
+                     class="border border-gray-200 w-full mb-8 mt-10 text-green-600 rounded-lg shadow-lg">
+                    <div class="flex items-center justify-between px-6 py-3 mx-auto">
+                        <div class="flex">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="mr-4 icon icon-tabler icon-tabler-circle-check"
+                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M9 12l2 2l4 -4"></path>
+                            </svg>
+                            <p class="text-sm font-semibold tracking-wider uppercase">
+                                {{ session('alert_success') }}
+                            </p>
+                        </div>
+                        <button onclick="document.getElementById('alert_success').style.display = 'none'"
+                                class="p-1 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-blueGray-600 focus:outline-none"
+                                type="button" aria-label="Close" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x"
+                                 width="24"
+                                 height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M10 10l4 4m0 -4l-4 4"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            @endif
+
+            @if (session('alert_error'))
+                <div id="alert_error"
+                     class="border border-gray-200 w-full mb-8 mt-10 text-red-600 rounded-lg shadow-lg">
+                    <div class="flex items-center justify-between px-6 py-3 mx-auto">
+                        <div class="flex">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="mr-4 icon icon-tabler icon-tabler-alert-triangle" width="24" height="24"
+                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                <polyline points="11 12 12 12 12 16 13 16"></polyline>
+                            </svg>
+                            <p class="text-sm font-semibold tracking-wider uppercase">
+                                <strong>エラー:</strong> {{ session('alert_error') }}
+                            </p>
+                        </div>
+                        <button onclick="document.getElementById('alert_error').style.display = 'none'"
+                                class="p-1 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-blueGray-600 focus:outline-none"
+                                type="button" aria-label="Close" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x"
+                                 width="24"
+                                 height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M10 10l4 4m0 -4l-4 4"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            @endif
+
             <div class="bg-white shadow-md rounded my-6">
                 <table class="min-w-max w-full table-auto">
                     <thead>
@@ -77,8 +144,8 @@
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit"
-                                           class="block w-4 mr-2 transform hover:text-themeColor hover:scale-110"
-                                           onclick="return confirm('このお知らせを削除します。\nよろしいですか？')">
+                                                class="block w-4 mr-2 transform hover:text-themeColor hover:scale-110"
+                                                onclick="return confirm('このお知らせを削除します。\nよろしいですか？')">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
