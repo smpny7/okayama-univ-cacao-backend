@@ -7,28 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
+/**
+ * Class Notice
+ *
+ * @property int $id
+ * @property string $contents
+ * @property string $sender_name
+ * @property string $sender_icon_url
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $released_at
+ * @property Carbon $deleted_at
+ */
 class Notice extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     protected $dates = ['released_at', 'deleted_at'];
-
     protected $fillable = ['contents', 'sender_name', 'sender_icon_url'];
 
-    public function isPublished()
+    public function isPublished(): bool
     {
         return $this->released_at->lte(Carbon::now());
     }
 
-    public function getFuzzyTime()
+    /** @noinspection PhpUnused */
+    public function getFuzzyTime(): string
     {
-        return $this->convert_to_fuzzy_time($this->released_at);
-    }
-
-    function convert_to_fuzzy_time($time_db)
-    {
-        $unix = strtotime($time_db);
+        $unix = strtotime($this->released_at);
         $now = time();
         $diff_sec = $now - $unix;
 

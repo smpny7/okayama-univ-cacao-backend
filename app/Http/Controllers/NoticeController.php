@@ -19,7 +19,7 @@ class NoticeController extends Controller
     public function information(): View
     {
         $notices = Notice::query()->whereDate('released_at', '<=', Carbon::today())->orderByDesc('released_at')->get();
-        return view('notice')->with('notices', $notices);
+        return view('information')->with('notices', $notices);
     }
 
     /**
@@ -75,6 +75,9 @@ class NoticeController extends Controller
      */
     public function edit(int $id): View
     {
+        /**
+         * @var Notice $notice
+         **/
         $notice = Notice::query()->findOrFail($id);
         return view('notices.edit')
             ->with('action', route('notices.update', ['notice' => $notice->id]))
@@ -90,6 +93,9 @@ class NoticeController extends Controller
      */
     public function update(Request $request, int $id): RedirectResponse
     {
+        /**
+         * @var Notice $notice
+         **/
         $notice = Notice::query()->findOrFail($id);
         $notice->sender_name = $request->input('sender_name');
         $notice->sender_icon_url = $request->input('sender_icon_url');
