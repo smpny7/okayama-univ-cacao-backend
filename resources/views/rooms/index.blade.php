@@ -28,6 +28,73 @@
                 </a>
             </div>
 
+            @if (session('alert_success'))
+                <div id="alert_success"
+                     class="border border-gray-200 w-full mb-8 mt-10 text-green-600 rounded-lg shadow-lg">
+                    <div class="flex items-center justify-between px-6 py-3 mx-auto">
+                        <div class="flex">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="mr-4 icon icon-tabler icon-tabler-circle-check"
+                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M9 12l2 2l4 -4"></path>
+                            </svg>
+                            <p class="text-sm font-semibold tracking-wider uppercase">
+                                {{ session('alert_success') }}
+                            </p>
+                        </div>
+                        <button onclick="document.getElementById('alert_success').style.display = 'none'"
+                                class="p-1 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-blueGray-600 focus:outline-none"
+                                type="button" aria-label="Close" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x"
+                                 width="24"
+                                 height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M10 10l4 4m0 -4l-4 4"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            @endif
+
+            @if (session('alert_error'))
+                <div id="alert_error"
+                     class="border border-gray-200 w-full mb-8 mt-10 text-red-600 rounded-lg shadow-lg">
+                    <div class="flex items-center justify-between px-6 py-3 mx-auto">
+                        <div class="flex">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="mr-4 icon icon-tabler icon-tabler-alert-triangle" width="24" height="24"
+                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                <polyline points="11 12 12 12 12 16 13 16"></polyline>
+                            </svg>
+                            <p class="text-sm font-semibold tracking-wider uppercase">
+                                <strong>エラー:</strong> {{ session('alert_error') }}
+                            </p>
+                        </div>
+                        <button onclick="document.getElementById('alert_error').style.display = 'none'"
+                                class="p-1 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-blueGray-600 focus:outline-none"
+                                type="button" aria-label="Close" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x"
+                                 width="24"
+                                 height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M10 10l4 4m0 -4l-4 4"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            @endif
+
             <div class="bg-white shadow-md rounded my-6">
                 <table class="min-w-max w-full table-auto">
                     <thead>
@@ -55,7 +122,7 @@
                             <td class="py-3 px-6 text-center">
                                 @if(!$room->is_admin)
                                     <div class="flex items-center justify-center">
-                                        <a href="{{ route('rooms.regenerate', ['club_id' => $room->id]) }}"
+                                        <a href="{{ route('rooms.show', ['room' => $room->id]) }}"
                                            class="text-themeColor underline"
                                            onclick="return confirm('この部屋IDで認証している端末は強制ログアウトされます。\nよろしいですか？')">リセットして再生成
                                             ></a>
@@ -73,7 +140,7 @@
                             </td>
                             <td class="py-3 px-6 text-center">
                                 <div class="flex item-center justify-center">
-                                    <a href="{{ route('rooms.edit', ['club_id' => $room->id]) }}"
+                                    <a href="{{ route('rooms.edit', ['room' => $room->id]) }}"
                                        class="block w-4 mr-2 transform hover:text-themeColor hover:scale-110">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke="currentColor">
@@ -82,14 +149,21 @@
                                         </svg>
                                     </a>
                                     @if(!$room->is_admin)
-                                        <div
-                                            class="cursor-not-allowed w-4 mr-2 transform hover:text-themeColor hover:scale-110">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                 stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                            </svg>
-                                        </div>
+                                        <form name="destroy" method="POST"
+                                              action="{{ route('rooms.destroy', ['room' => $room->id]) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit"
+                                                    class="block w-4 mr-2 transform hover:text-themeColor hover:scale-110"
+                                                    onclick="return confirm('この部屋を削除します。\nよろしいですか？')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                     stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                </svg>
+                                            </button>
+                                        </form>
                                     @endif
                                 </div>
                             </td>

@@ -6,10 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Passport\HasApiTokens;
 use Webpatser\Uuid\Uuid;
 
-class Club extends Authenticatable
+/**
+ * Room Notice
+ *
+ * @property string $id
+ * @property string $name
+ * @property string $login_id
+ * @property string $password
+ * @property bool   $is_admin
+ * @property string $image_path
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
+ */
+class Room extends Authenticatable
 {
     use HasFactory, SoftDeletes, Notifiable, HasApiTokens;
 
@@ -56,9 +70,9 @@ class Club extends Authenticatable
         return $this->query()->where('login_id', $username)->first();
     }
 
-    public function getNumOfActivePeople(): int
+    public function getNumOfActive(): int
     {
-        $club_id = $this->id;
-        return Visitor::query()->where('club_id', $club_id)->count();
+        $room_id = $this->id;
+        return Visitor::query()->where('room_id', $room_id)->count();
     }
 }

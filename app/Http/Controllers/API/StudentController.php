@@ -24,9 +24,9 @@ class StudentController extends Controller
         $student = new Student;
         $student_id = $request->input('student_id');
 
-        $active_club = $student->getActiveClub($student_id);
-        $is_my_room = $active_club == $request->user()->id;
-        return response()->json(['success' => true, 'data' => ['active_club' => $active_club, 'is_my_room' => $is_my_room]]);
+        $active_room = $student->getActiveRoom($student_id);
+        $is_my_room = $active_room == $request->user()->id;
+        return response()->json(['success' => true, 'data' => ['active_room' => $active_room, 'is_my_room' => $is_my_room]]);
     }
 
 
@@ -40,13 +40,13 @@ class StudentController extends Controller
     {
         $student = new Student;
         $student_id = $request->input('student_id');
-        $club_id = $request->user()->id;
+        $room_id = $request->user()->id;
 
-        if (!is_null($student->getActiveClubId($student_id)))
+        if (!is_null($student->getActiveRoomId($student_id)))
             return $this->_errorResponse('Bad request.');
         // TODO: 体温 float確認
 
-        $this->_enterRoom($student_id, $club_id, floatval($request->input('body_temp')));
+        $this->_enterRoom($student_id, $room_id, floatval($request->input('body_temp')));
 
         return response()->json(['success' => true]);
     }
@@ -62,12 +62,12 @@ class StudentController extends Controller
     {
         $student = new Student;
         $student_id = $request->input('student_id');
-        $club_id = $request->user()->id;
+        $room_id = $request->user()->id;
 
-        if (is_null($student->getActiveClubId($student_id))) // TODO: isInRoom (Student Model)
+        if (is_null($student->getActiveRoomId($student_id))) // TODO: isInRoom (Student Model)
             return $this->_errorResponse('Bad request.');
 
-        $this->_leaveRoom($student_id, $club_id);
+        $this->_leaveRoom($student_id, $room_id);
 
         return response()->json(['success' => true]);
     }
@@ -75,15 +75,15 @@ class StudentController extends Controller
 
     /**
      * @param $student_id
-     * @param $club_id
+     * @param $room_id
      * @param $body_temp
      * @return void
      */
-    private function _enterRoom($student_id, $club_id, $body_temp): void
+    private function _enterRoom($student_id, $room_id, $body_temp): void
     {
         Activity::query()->create([
             'student_id' => $student_id,
-            'club_id' => $club_id,
+            'room_id' => $room_id,
             'body_temp' => $body_temp,
             'physical_condition' => '良好',
             'stifling' => 'なし',
@@ -93,20 +93,20 @@ class StudentController extends Controller
 
         Visitor::query()->create([
             'student_id' => $student_id,
-            'club_id' => $club_id,
+            'room_id' => $room_id,
         ]);
     }
 
 
     /**
      * @param $student_id
-     * @param $club_id
+     * @param $room_id
      * @return void
      */
-    private function _leaveRoom($student_id, $club_id): void
+    private function _leaveRoom($student_id, $room_id): void
     {
         $activity = Activity::query()->orderByDesc('id')
-            ->where('student_id', $student_id)->where('club_id', $club_id)->first();
+            ->where('student_id', $student_id)->where('room_id', $room_id)->first();
 
         if (!is_null($activity)) $activity->update([
             'out_time' => new DateTime(),

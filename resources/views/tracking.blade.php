@@ -81,7 +81,7 @@
                                 </td>
                                 <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ $student['club_id'] }}</span>
+                                        <span>{{ $student['room_id'] }}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-center">

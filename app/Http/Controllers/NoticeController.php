@@ -96,13 +96,12 @@ class NoticeController extends Controller
         /**
          * @var Notice $notice
          **/
-        $notice = Notice::query()->findOrFail($id);
-        $notice->sender_name = $request->input('sender_name');
-        $notice->sender_icon_url = $request->input('sender_icon_url');
-        $notice->released_at = $request->input('released_at');
-        $notice->contents = $request->input('contents');
-
         try {
+            $notice = Notice::query()->findOrFail($id);
+            $notice->sender_name = $request->input('sender_name');
+            $notice->sender_icon_url = $request->input('sender_icon_url');
+            $notice->released_at = $request->input('released_at');
+            $notice->contents = $request->input('contents');
             $notice->saveOrFail();
             return redirect()->route('notices.index')
                 ->with('alert_success', 'お知らせを更新しました。');

@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'clubs',
+        'passwords' => 'rooms',
     ],
 
     /*
@@ -38,12 +38,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'clubs',
+            'provider' => 'rooms',
         ],
-
         'api' => [
             'driver' => 'passport',
-            'provider' => 'clubs',
+            'provider' => 'rooms',
             'hash' => false,
         ],
     ],
@@ -66,15 +65,10 @@ return [
     */
 
     'providers' => [
-        'clubs' => [
+        'rooms' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Club::class,
+            'model' => App\Models\Room::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -93,8 +87,8 @@ return [
     */
 
     'passwords' => [
-        'clubs' => [
-            'provider' => 'clubs',
+        'rooms' => [
+            'provider' => 'rooms',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

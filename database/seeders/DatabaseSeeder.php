@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Activity;
-use App\Models\Club;
+use App\Models\Room;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Club::factory(20)->create();
+        Room::factory(20)->create();
         Activity::factory(1000)->create();
         $this->call([
-            ClubSeeder::class,
+            RoomSeeder::class,
             OauthClientSeeder::class,
         ]);
     }

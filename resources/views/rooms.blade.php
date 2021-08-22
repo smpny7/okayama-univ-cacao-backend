@@ -29,8 +29,8 @@
                                  alt="{{ $room->name }}"/>
                             <div class="absolute top-3 right-3">
                                 <span class="font-bold px-4 py-2 rounded-lg text-sm text-white tracking-widest
-                                            @if($room->active == 0) bg-gray-300 @else bg-themeColor @endif">
-                                    {{ $room->active . '人' }}
+                                            @if($room->numOfActive == 0) bg-gray-300 @else bg-themeColor @endif">
+                                    {{ $room->numOfActive . '人' }}
                                 </span>
                             </div>
                         </div>

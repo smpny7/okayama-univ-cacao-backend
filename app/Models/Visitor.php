@@ -16,6 +16,6 @@ class Visitor extends Model
      */
     protected $fillable = [
         'student_id',
-        'club_id',
+        'room_id',
     ];
 }

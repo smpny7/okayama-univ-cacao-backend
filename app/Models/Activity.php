@@ -16,7 +16,7 @@ class Activity extends Model
      */
     protected $fillable = [
         'student_id',
-        'club_id',
+        'room_id',
         'body_temp',
         'physical_condition',
         'stifling',

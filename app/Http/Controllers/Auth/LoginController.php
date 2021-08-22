@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Client\Request;
 
 class LoginController extends Controller
 {
@@ -44,7 +43,7 @@ class LoginController extends Controller
         return 'login_id';
     }
 
-    protected function credentials($request)
+    protected function credentials($request): array
     {
         return array_merge($request->only($this->username(), 'password'), ['is_admin' => true]);
     }

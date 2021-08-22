@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Activity;
-use App\Models\Club;
+use App\Models\Room;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -27,7 +27,7 @@ class ActivityFactory extends Factory
         $randomDate = $this->randomDate();
         return [
             'student_id' => sprintf("%08d", mt_rand(99999900, 99999999)),
-            'club_id' => Club::query()->limit(5)->get()[rand(0, 4)]['id'],
+            'room_id' => Room::query()->limit(5)->get()[rand(0, 4)]['id'],
             'body_temp' => 36.5,
             'physical_condition' => '良好',
             'stifling' => 'なし',

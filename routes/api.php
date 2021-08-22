@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\ClubController;
+use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +22,10 @@ Route::middleware('auth:api')->group(function () {
         return $request->user();
     });
 
-    Route::get('/getClubName', [ClubController::class, 'getClubName']);
-    Route::post('/getClubNameFromID', [ClubController::class, 'getClubNameFromID']);
+    Route::get('/getClubName', [RoomController::class, 'getRoomName']);
+    Route::get('/getRoomName', [RoomController::class, 'getRoomName']);
+    Route::post('/getClubNameFromID', [RoomController::class, 'getRoomNameFromID']);
+    Route::post('/getRoomNameFromID', [RoomController::class, 'getRoomNameFromID']);
 
     Route::post('/status', [StudentController::class, 'status']);
     Route::post('/enter', [StudentController::class, 'enter']);

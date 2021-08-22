@@ -26,7 +26,7 @@
                    title="印刷する">
                     印刷する
                 </a>
-                <a href="/rooms/index"
+                <a href="{{ route('rooms.index') }}"
                    class="px-10 py-4 font-medium ml-4 tracking-wide text-white transition duration-200 rounded shadow-md bg-gray-300 focus:shadow-outline focus:outline-none"
                    aria-label="戻る"
                    title="戻る">

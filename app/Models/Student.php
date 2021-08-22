@@ -10,15 +10,15 @@ class Student extends Model
 {
     use HasFactory;
 
-    public function getActiveClubId($student_id)
+    public function getActiveRoomId($student_id)
     {
         $student = Visitor::query()->where('student_id', $student_id)->orderByDesc('id')->first();
-        return is_null($student) ? null : $student->club_id;
+        return is_null($student) ? null : $student->room_id;
     }
 
-    public function getActiveClub($student_id)
+    public function getActiveRoom($student_id)
     {
         $student = Visitor::query()->where('student_id', $student_id)->orderByDesc('id')->first();
-        return is_null($student) ? null : $student->club_id;
+        return is_null($student) ? null : $student->room_id;
     }
 }
