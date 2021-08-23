@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GetRoomNameFromIDRequest;
 use App\Models\Room;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -23,10 +24,10 @@ class RoomController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param GetRoomNameFromIDRequest $request
      * @return JsonResponse
      */
-    public function getRoomNameFromID(Request $request): JsonResponse
+    public function getRoomNameFromID(GetRoomNameFromIDRequest $request): JsonResponse
     {
         /**
          * @var Room $room

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\StudentController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->group(function () {
-
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
+    // This routing will be deleted.
     Route::get('/getClubName', [RoomController::class, 'getRoomName']);
-    Route::get('/getRoomName', [RoomController::class, 'getRoomName']);
     Route::post('/getClubNameFromID', [RoomController::class, 'getRoomNameFromID']);
+    // ↓ Will be changed to this routing.
+    Route::get('/getRoomName', [RoomController::class, 'getRoomName']);
     Route::post('/getRoomNameFromID', [RoomController::class, 'getRoomNameFromID']);
 
     Route::post('/status', [StudentController::class, 'status']);

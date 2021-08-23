@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class RegisterBodyTempRequest extends FormRequest
+class StatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,6 @@ class RegisterBodyTempRequest extends FormRequest
     {
         return [
             'student_id' => 'required|string|max:64',
-            'body_temp' => 'required|string|max:64',
         ];
     }
 

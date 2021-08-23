@@ -3,23 +3,25 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterBodyTempRequest;
+use App\Http\Requests\EnterRequest;
+use App\Http\Requests\LeaveRequest;
+use App\Http\Requests\StatusRequest;
 use App\Models\Activity;
 use App\Models\Student;
 use App\Models\Visitor;
 use DateTime;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Throwable;
 
 class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param RegisterBodyTempRequest $request
+     * @param StatusRequest $request
      * @return JsonResponse
      */
-    public function status(Request $request): JsonResponse
+    public function status(StatusRequest $request): JsonResponse
     {
         $student = new Student;
         $student_id = $request->input('student_id');
@@ -33,39 +35,47 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param RegisterBodyTempRequest $request
+     * @param EnterRequest $request
      * @return JsonResponse
      */
-    public function enter(RegisterBodyTempRequest $request): JsonResponse
+    public function enter(EnterRequest $request): JsonResponse
     {
         $student = new Student;
         $student_id = $request->input('student_id');
         $room_id = $request->user()->id;
 
         if (!is_null($student->getActiveRoomId($student_id)))
-            return $this->_errorResponse('Bad request.');
-        // TODO: 体温 float確認
+            return $this->_errorResponse();
 
-        $this->_enterRoom($student_id, $room_id, floatval($request->input('body_temp')));
+        try {
+            $body_temp = floatval($request->input('body_temp'));
 
-        return response()->json(['success' => true]);
+            $this->_enterRoom($student_id, $room_id, $body_temp);
+
+            return response()->json(['success' => true]);
+        } catch (Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'errors' => 'Invalid Body Temperature.',
+            ], 400);
+        }
     }
 
 
     /**
      * Display a listing of the resource.
      *
-     * @param RegisterBodyTempRequest $request
+     * @param LeaveRequest $request
      * @return JsonResponse
      */
-    public function leave(Request $request): JsonResponse //TODO: Request Model
+    public function leave(LeaveRequest $request): JsonResponse
     {
         $student = new Student;
         $student_id = $request->input('student_id');
         $room_id = $request->user()->id;
 
-        if (is_null($student->getActiveRoomId($student_id))) // TODO: isInRoom (Student Model)
-            return $this->_errorResponse('Bad request.');
+        if (is_null($student->getActiveRoomId($student_id)))
+            return $this->_errorResponse();
 
         $this->_leaveRoom($student_id, $room_id);
 
@@ -117,14 +127,13 @@ class StudentController extends Controller
 
 
     /**
-     * @param $error_message
      * @return JsonResponse
      */
-    private function _errorResponse($error_message): JsonResponse
+    private function _errorResponse(): JsonResponse
     {
         return response()->json([
             'success' => false,
-            'errors' => $error_message,
+            'errors' => 'Bad request.',
         ], 400);
     }
 }
