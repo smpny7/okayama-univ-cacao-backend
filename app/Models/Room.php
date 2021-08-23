@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -63,13 +65,15 @@ class Room extends Authenticatable
     /**
      * Change Laravel Passport authentication method.
      * @param $username
-     * @return mixed
+     * @return Builder|Model|object|null
+     * @noinspection PhpUnused
      */
     public function findForPassport($username)
     {
         return $this->query()->where('login_id', $username)->first();
     }
 
+    /** @noinspection PhpUnused */
     public function getNumOfActive(): int
     {
         $room_id = $this->id;
