@@ -19,6 +19,7 @@ class RoomFactory extends Factory
      * Define the model's default state.
      *
      * @return array
+     * @noinspection PhpUndefinedMethodInspection
      */
     public function definition(): array
     {
