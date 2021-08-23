@@ -55,7 +55,7 @@
                 <div class="mt-2 text-right">
                     <p class="inline-block text-themeColor tracking-widest">{{ '検索結果: ' . count($students) . ' 名' }}</p>
                 </div>
-                <div class="bg-white shadow-md Erounded mb-6 mt-3">
+                <div class="bg-white shadow-md rounded mb-6 mt-3">
                     <table class="min-w-max w-full table-auto">
                         <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -81,7 +81,7 @@
                                 </td>
                                 <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ $student['room_id'] }}</span>
+                                        <span>{{ $student['room_name'] }}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-center">
