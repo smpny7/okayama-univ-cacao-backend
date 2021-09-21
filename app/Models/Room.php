@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Passport\HasApiTokens;
+use Ramsey\Collection\Collection;
 use Webpatser\Uuid\Uuid;
 
 /**
@@ -24,6 +25,8 @@ use Webpatser\Uuid\Uuid;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
+ * ==============================
+ * @property integer $numOfActive
  */
 class Room extends Authenticatable
 {
@@ -73,10 +76,15 @@ class Room extends Authenticatable
         return $this->query()->where('login_id', $username)->first();
     }
 
-    /** @noinspection PhpUnused */
     public function getNumOfActive(): int
     {
         $room_id = $this->id;
         return Visitor::query()->where('room_id', $room_id)->count();
+    }
+
+    public function getActiveMembers()
+    {
+        $room_id = $this->id;
+        return Visitor::query()->where('room_id', $room_id)->with('activity')->get();
     }
 }

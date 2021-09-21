@@ -15,7 +15,7 @@
                 </li>
                 <li>
                     <a
-                        href="/rooms"
+                        href="/visitors"
                         aria-label="部屋一覧"
                         title="部屋一覧"
                         class="font-medium tracking-wide text-gray-700 tracking-widest transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -127,7 +127,7 @@
                                 </li>
                                 <li>
                                     <a
-                                        href="/rooms"
+                                        href="/visitors"
                                         aria-label="部屋一覧"
                                         title="部屋一覧"
                                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"

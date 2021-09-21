@@ -14,20 +14,6 @@ use Throwable;
 class RoomController extends Controller
 {
     /**
-     * Display a listing of the visitors for each room.
-     *
-     * @return View
-     */
-    public function visitors(): View
-    {
-        $rooms = Room::query()->where('is_admin', 0)->get();
-        foreach ($rooms as $room)
-            $room->numOfActive = $room->getNumOfActive();
-
-        return view('rooms')->with('rooms', $rooms);
-    }
-
-    /**
      * Display a listing of the room.
      *
      * @return View

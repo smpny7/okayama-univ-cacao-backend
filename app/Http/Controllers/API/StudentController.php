@@ -49,16 +49,16 @@ class StudentController extends Controller
 
         try {
             $body_temp = floatval($request->input('body_temp'));
-
-            $this->_enterRoom($student_id, $room_id, $body_temp);
-
-            return response()->json(['success' => true]);
         } catch (Throwable $e) {
             return response()->json([
                 'success' => false,
                 'errors' => 'Invalid Body Temperature.',
             ], 400);
         }
+
+        $this->_enterRoom($student_id, $room_id, $body_temp);
+
+        return response()->json(['success' => true]);
     }
 
 
@@ -91,7 +91,10 @@ class StudentController extends Controller
      */
     private function _enterRoom($student_id, $room_id, $body_temp): void
     {
-        Activity::query()->create([
+        /**
+         * @var Activity $activity
+         **/
+        $activity = Activity::query()->create([
             'student_id' => $student_id,
             'room_id' => $room_id,
             'body_temp' => $body_temp,
@@ -104,6 +107,7 @@ class StudentController extends Controller
         Visitor::query()->create([
             'student_id' => $student_id,
             'room_id' => $room_id,
+            'activity_id' => $activity->id,
         ]);
     }
 

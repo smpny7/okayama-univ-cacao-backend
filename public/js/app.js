@@ -20007,7 +20007,7 @@ var staticRenderFns = [
               staticClass:
                 "font-medium tracking-wide text-gray-700 tracking-widest transition-colors duration-200 hover:text-deep-purple-accent-400",
               attrs: {
-                href: "/rooms",
+                href: "/visitors",
                 "aria-label": "部屋一覧",
                 title: "部屋一覧"
               }
@@ -20098,7 +20098,11 @@ var staticRenderFns = [
         {
           staticClass:
             "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400",
-          attrs: { href: "/rooms", "aria-label": "部屋一覧", title: "部屋一覧" }
+          attrs: {
+            href: "/visitors",
+            "aria-label": "部屋一覧",
+            title: "部屋一覧"
+          }
         },
         [_vm._v("部屋一覧")]
       )

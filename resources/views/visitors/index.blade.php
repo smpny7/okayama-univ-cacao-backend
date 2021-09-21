@@ -22,7 +22,7 @@
             </div>
             <div class="grid gap-8 row-gap-5 mb-8 lg:grid-cols-3 lg:row-gap-8">
                 @foreach($rooms as $room)
-                    <div>
+                    <a href="{{ route('visitors.show', ['visitor' => $room->id]) }}" class="block">
                         <div class="relative">
                             <img class="object-cover w-full h-56 mb-6 rounded shadow-lg md:h-64 xl:h-60"
                                  src="{{ $room->image_path ?? 'https://cacao-app.com/img/club.webp' }}"
@@ -37,7 +37,7 @@
                         <p class="mb-2 text-xl font-bold leading-none sm:text-2xl">
                             {{ $room->name }}
                         </p>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>
