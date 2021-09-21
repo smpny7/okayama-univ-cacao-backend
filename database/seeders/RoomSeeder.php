@@ -19,6 +19,7 @@ class RoomSeeder extends Seeder
             'name' => 'サンプル部',
             'login_id' => 'sample',
             'password' => Hash::make('password'),
+            'is_admin' => true
         ]);
     }
 }
