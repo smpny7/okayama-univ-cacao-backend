@@ -18,7 +18,7 @@ class OauthClientSeeder extends Seeder
         DB::table('oauth_clients')->insert([
             'name' => 'sample',
             'secret' => 'q0TQSnghYYktXAogkclyeRSoQBhMJrtfbBTyLG4c',
-            'provider' => 'clubs',
+            'provider' => 'rooms',
             'redirect' => 'http://localhost',
             'personal_access_client' => 0,
             'password_client' => 1,
