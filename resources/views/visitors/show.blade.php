@@ -99,10 +99,15 @@
                                 </div>
                             </div>
                             <div class="flex items-center justify-between gap-4 mt-6">
-                                <button type="button"
-                                        class="w-1/2 px-4 py-3 text-sm border rounded-lg text-gray-500 tracking-widest bg-white">
-                                    入退室履歴
-                                </button>
+                                <form action="{{ route('student.search') }}" method="post"
+                                      class="w-1/2">
+                                    @csrf
+                                    <input type="hidden" name="student_id" value="{{ $visitor->activity->student_id }}">
+                                    <button type="submit"
+                                            class="text-center w-full px-4 py-3 text-sm border rounded-lg text-gray-500 tracking-widest bg-white">
+                                        入退室履歴
+                                    </button>
+                                </form>
                                 <form action="{{ route('tracking.search') }}" method="post"
                                       class="w-1/2">
                                     @csrf

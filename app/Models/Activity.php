@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -21,7 +22,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon $out_time
  * @property Carbon $updated_at
  */
-
 class Activity extends Model
 {
     use HasFactory;
@@ -46,4 +46,12 @@ class Activity extends Model
         'in_time',
         'out_time',
     ];
+
+    /**
+     * Get the visitor associated with the activity.
+     */
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(Room::class);
+    }
 }
