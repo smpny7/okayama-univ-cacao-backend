@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\NoticeController;
-use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
     Route::post('/student', [App\Http\Controllers\StudentController::class, 'search'])->name('student.search');
 
-    Route::resource('visitors', VisitorController::class)->only('index', 'show');
+    Route::resource('rooms', RoomController::class);
     Route::resource('notices', NoticeController::class)->except('show');
 });
