@@ -37,7 +37,7 @@
                     <div class="flex w-full md:justify-start justify-center items-end mt-2">
                         <div class="relative mr-4 w-full">
                             <label class="leading-7 text-sm text-gray-600">内容</label>
-                            <textarea id="contents" name="contents"
+                            <textarea id="contents" name="contents" required
                                       class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-pink-200 focus:bg-transparent focus:border-pink-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">@isset($notice){{ $notice->contents }}@endisset</textarea>
                         </div>
                     </div>
