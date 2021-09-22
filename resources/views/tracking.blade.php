@@ -76,7 +76,14 @@
                                 </td>
                                 <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ $student['student_id'] }}</span>
+                                        <form action="{{ route('student.search') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="student_id" value="{{ $student['student_id'] }}">
+                                            <button type="submit"
+                                                    class="bg-none font-normal border-b tracking-wider">
+                                                {{ $student['student_id'] }}
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left">
