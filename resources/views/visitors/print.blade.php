@@ -62,7 +62,7 @@
                             <td class="py-3 px-6 text-center">
                                 <div class="flex items-center justify-center">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{ $activity->body_temp }}</span>
+                                        <span class="font-medium">{{ round($activity->body_temp, 1) }}</span>
                                     </div>
                                 </div>
                             </td>

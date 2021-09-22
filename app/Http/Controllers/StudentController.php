@@ -44,7 +44,7 @@ class StudentController extends Controller
 
         return view('students.show')
             ->with('student_id', $student_id)
-            ->with('average_temp', $average_temp)
+            ->with('average_temp', round($average_temp, 1))
             ->with('current_room', $current_room)
             ->with('activities', $activities);
     }
