@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('token:api')->group(function () {
+    Route::get('/active', [RoomController::class, 'oucrc']);
+});
+
 Route::middleware('auth:api')->group(function () {
     // This routing will be deleted.
     Route::get('/getClubName', [RoomController::class, 'getRoomName']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GetRoomNameFromIDRequest;
 use App\Models\Room;
+use App\Models\Visitor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -44,5 +45,21 @@ class RoomController extends Controller
             'success' => true,
             'data' => $room->name,
         ]);
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return JsonResponse
+     */
+    public function oucrc(): JsonResponse
+    {
+        $room_id = env('OUCRC_UUID');
+        Room::query()->findOrFail($room_id);
+
+        $visitors = Visitor::query()->where('room_id', $room_id)->get(['student_id', 'created_at']);
+
+        return response()->json(['success' => true, 'data' => $visitors]);
     }
 }
