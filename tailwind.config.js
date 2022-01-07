@@ -1,18 +1,24 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
-    purge: [],
-    darkMode: false, // or 'media' or 'class'
+    content: [
+        './resources/views/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
+    ],
     theme: {
         extend: {
             colors: {
                 themeColor: '#FF839C',
+                green: colors.emerald,
+                yellow: colors.amber,
+                purple: colors.violet,
+                gray: colors.neutral,
             },
             screens: {
                 'print': {'raw': 'print'},
             },
         },
-    },
-    variants: {
-        extend: {},
     },
     plugins: [],
 }
