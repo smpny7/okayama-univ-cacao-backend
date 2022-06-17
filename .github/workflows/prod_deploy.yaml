@@ -1,0 +1,73 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Public IP of Virtual Machine
+        id: ip
+        uses: haythem/public-ip@v1.2
+
+      - name: Register Public IP in CORESERVER
+        uses: wei/curl@v1
+        with:
+          args: -d "account=${{ secrets.SSH_USER }}" -d "server_name=${{ secrets.SSH_HOST }}" -d "api_secret_key=${{ secrets.CORESERVER_API_KEY }}" -d "param[addr]=${{ steps.ip.outputs.ipv4 }}" -X POST https://api.coreserver.jp/v1/tool/ssh_ip_allow
+
+      - name: Wait for Public IP Registration
+        run: sleep 300
+
+      - name: Confirm SSH Authentication can be Passed
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: whoami
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Installing Composer Package
+        uses: MilesChou/composer-action/7.4@master
+        with:
+          args: install --ignore-platform-req=ext-gd
+
+      - name: Installing NPM Package and Build
+        run: |
+          docker pull "node:lts-slim"
+          npm install && npm run production
+
+      - name: Deploy Laravel Project with rsync
+        uses: SHSharkar/Laravel-Rsync-Deploy@master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          ARGS: "--ignore-times --compress --verbose --exclude=.git --exclude=.github --exclude=node_modules --no-perms --no-owner --no-group --recursive"
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_HOST_PORT: ${{ secrets.SSH_PORT }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          TARGET_DIRECTORY: ${{ secrets.SSH_PROD_PATH }}
+
+      - name: Setting up Laravel Project with SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ${{ secrets.SSH_PROD_PATH }}
+            echo ${{ secrets.LARAVEL_ENV_PROD_BASE64 }} | base64 --decode --ignore-garbage > .env
+            php74cli artisan cache:clear
+            php74cli artisan config:clear
+            php74cli artisan config:cache
+            php74cli artisan route:cache
+            php74cli artisan view:clear
+            php74cli artisan clear-compiled
+            php74cli artisan optimize
+            php74cli artisan migrate --force

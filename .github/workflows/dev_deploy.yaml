@@ -51,7 +51,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_HOST_PORT: ${{ secrets.SSH_PORT }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
-          TARGET_DIRECTORY: ${{ secrets.SSH_PATH }}
+          TARGET_DIRECTORY: ${{ secrets.SSH_DEV_PATH }}
 
       - name: Setting up Laravel Project with SSH
         uses: appleboy/ssh-action@master
@@ -61,12 +61,12 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ${{ secrets.SSH_PATH }}
-            echo -e "${{ secrets.LARAVEL_ENV_DEBUG }}" > .env
+            cd ${{ secrets.SSH_DEV_PATH }}
+            echo ${{ secrets.LARAVEL_ENV_DEV_BASE64 }} | base64 --decode --ignore-garbage > .env
             php74cli artisan cache:clear
             php74cli artisan config:clear
             php74cli artisan config:cache
-            php74cli artisan route:cache
+            php74cli artisan route:cachex
             php74cli artisan view:clear
             php74cli artisan clear-compiled
             php74cli artisan optimize
