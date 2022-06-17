@@ -59,14 +59,14 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          port: ${{ secrets.SSH_PORT }}x
           script: |
             cd ${{ secrets.SSH_PATH }}
             echo ${{ secrets.LARAVEL_ENV_DEBUG }} | base64 --decode --ignore-garbage > .env
             php74cli artisan cache:clear
             php74cli artisan config:clear
             php74cli artisan config:cache
-            php74cli artisan route:cachex
+            php74cli artisan route:cache
             php74cli artisan view:clear
             php74cli artisan clear-compiled
             php74cli artisan optimize
