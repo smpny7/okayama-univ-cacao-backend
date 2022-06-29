@@ -24,7 +24,7 @@
             </h3>
 
             <div class="flex">
-                <div class="shadow-lg rounded-2xl bg-white dark:bg-gray-800 p-4">
+                <div class="shadow-lg rounded-2xl bg-white p-4">
                     <div class="flex-row gap-4 flex justify-center items-center">
                         <div class="flex-shrink-0 text-themeColor pl-1">
                             <svg viewBox="-7 -2 24 24" width="30" height="30" preserveAspectRatio="xMinYMin">
@@ -33,7 +33,7 @@
                             </svg>
                         </div>
                         <div class="flex flex-col pl-4 pr-20">
-                            <span class="text-gray-600 dark:text-white text-lg font-medium tracking-wider">
+                            <span class="text-gray-600 text-lg font-medium tracking-wider">
                                 @isset($average_temp)
                                     {{ $average_temp }} ℃
                                 @else
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="shadow-lg rounded-2xl bg-white dark:bg-gray-800 ml-6 p-4">
+                <div class="shadow-lg rounded-2xl bg-white ml-6 p-4">
                     <div class="flex-row gap-4 flex justify-center items-center">
                         <div class="flex-shrink-0 text-themeColor pl-1">
                             <svg viewBox="-2 -3 24 24" width="30" height="30" preserveAspectRatio="xMinYMin">
@@ -56,7 +56,7 @@
                             </svg>
                         </div>
                         <div class="flex flex-col pl-4 pr-20">
-                            <span class="text-gray-600 dark:text-white text-lg font-medium tracking-wider">
+                            <span class="text-gray-600 text-lg font-medium tracking-wider">
                                 @isset($current_room)
                                     {{ $current_room }}
                                 @else
@@ -79,7 +79,7 @@
                 <div class="grid gap-x-6 gap-y-4 lg:grid-cols-2 xl:grid-cols-3 max-w-full">
                     @foreach($activities as $activity)
                         <a href="{{ route('visitors.show', ['visitor' => $activity->room_id]) }}"
-                           class="block shadow-lg rounded-2xl bg-white dark:bg-gray-800 pb-2 px-4 pt-4">
+                           class="block shadow-lg rounded-2xl bg-white pb-2 px-4 pt-4">
                             <div class="flex">
                                 <div class="pt-1 mr-6 text-center">
                                     <div class="px-2 pb-1 mb-1 border-b border-gray-400">

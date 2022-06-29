@@ -33,7 +33,7 @@
                                      class="mx-auto object-cover h-10"/>
                             </div>
                             <div class="flex-grow flex flex-col pl-6">
-                                <span class="text-gray-600 dark:text-white text-lg font-medium">
+                                <span class="text-gray-600 text-lg font-medium">
                                     {{ $date->year }}年 {{ $date->month }}月
                                 </span>
                                 <span class="text-gray-400 text-xs tracking-wider">
